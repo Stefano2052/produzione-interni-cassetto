@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produzione Interni Cassetto</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#E79E2F" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Cassetto" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --primary: #E79E2F;
+        --primary-dark: #C9831F;
+        --secondary: #A8A29E;
+        --background: #F7F5F2;
+        --surface: #FFFFFF;
+        --border: #E5E2DE;
+        --text-primary: #2F2F2F;
+        --text-secondary: #6F6F6F;
+        --shadow-soft: 0 6px 18px rgba(47, 47, 47, 0.08);
+        --shadow-focus: 0 0 0 3px rgba(231, 158, 47, 0.18);
+        --success-bg: #F7EBD8;
+        --success-text: #8A5A16;
+        --info-bg: #F3EFE8;
+        --info-text: #6F6F6F;
+        --error-bg: #F9E3E0;
+        --error-text: #9B4A43;
+        --selected-bg: #FCF3E3;
+        --hover-row: #FBF9F6;
+        --section-bg: #F5F1EA;
+        --evadere-bg: #FBF4DF;
+        --produrre-bg: #FBEAEA;
+        --prodotti-bg: #F2F5EC;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: var(--background);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      .app-shell {
+        min-height: 100vh;
+        background: var(--background);
+      }
+
+      .header {
+        width: 100%;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        font-family: 'Nunito', Arial, sans-serif;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 1.1;
+        color: var(--text-primary);
+        white-space: nowrap;
+      }
+
+      .header h1 strong {
+        font-weight: 800;
+      }
+
+      .app-name {
+        font-family: 'Nunito', Arial, sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.25;
+        color: var(--text-secondary);
+        text-align: right;
+      }
+
+      .app-name strong {
+        font-weight: 800;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 16px;
+      }
+
+      .main-nav {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .nav-btn,
+      .dash-tab,
+      .btn {
+        transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease;
+      }
+
+      .nav-btn {
+        min-height: 46px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--surface);
+        color: var(--text-secondary);
+        box-shadow: none;
+      }
+
+      .nav-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(231, 158, 47, 0.22);
+      }
+
+      .nav-btn:active,
+      .dash-tab:active,
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .title {
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 4px 0 16px;
+        letter-spacing: -0.01em;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: var(--shadow-soft);
+        margin-bottom: 16px;
+      }
+
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+      }
+
+      input {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 16px;
+        color: var(--text-primary);
+        background: var(--surface);
+        outline: none;
+      }
+
+      input::placeholder {
+        color: var(--text-secondary);
+      }
+
+      input:focus {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-focus);
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 50px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        border-color: var(--primary-dark);
+      }
+
+      .btn-secondary,
+      .btn-accent {
+        background: var(--surface);
+        color: var(--text-primary);
+        border-color: var(--border);
+      }
+
+      .btn-secondary:hover,
+      .btn-accent:hover {
+        background: var(--background);
+      }
+
+      .msg {
+        margin-top: 12px;
+        padding: 12px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 700;
+        border: 1px solid transparent;
+        display: none;
+      }
+
+      .msg.show { display: block; }
+      .msg.error {
+        background: var(--error-bg);
+        color: var(--error-text);
+        border-color: rgba(155, 74, 67, 0.12);
+      }
+      .msg.success {
+        background: var(--success-bg);
+        color: var(--success-text);
+        border-color: rgba(138, 90, 22, 0.12);
+      }
+      .msg.info {
+        background: var(--info-bg);
+        color: var(--info-text);
+        border-color: rgba(111, 111, 111, 0.12);
+      }
+
+      .hidden { display: none; }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .info-item {
+        background: #FCFBF9;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .info-label {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-bottom: 4px;
+      }
+
+      .info-value {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .residuo-box .info-value { font-size: 28px; }
+
+      .elenco-header {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+      }
+
+      .elenco-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+      }
+
+      .elenco-table th {
+        background: var(--background);
+        font-weight: 700;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        padding: 7px 4px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .elenco-table td {
+        padding: 9px 4px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-primary);
+      }
+
+      .elenco-table tr {
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+
+      .elenco-table tr:hover {
+        background: var(--hover-row);
+      }
+
+      .elenco-table tr:active {
+        background: var(--selected-bg);
+      }
+
+      .elenco-table .scaduta {
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 8px;
+      }
+
+      .radio-group label {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 48px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--surface);
+        color: var(--text-primary);
+        margin-bottom: 0;
+        transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      }
+
+      .radio-group input[type="radio"] {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        accent-color: var(--primary);
+      }
+
+      .radio-group label.selected {
+        border-color: var(--primary);
+        background: var(--selected-bg);
+        box-shadow: inset 0 0 0 1px rgba(231, 158, 47, 0.12);
+      }
+
+      .subtitle {
+        font-size: 13px;
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+      }
+
+      .dash-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .dash-tab {
+        min-height: 48px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        background: var(--surface);
+        color: var(--text-secondary);
+      }
+
+      .dash-tab.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(231, 158, 47, 0.22);
+      }
+
+      .dash-table-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 16px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .dash-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        min-width: 480px;
+      }
+
+      .dash-table th,
+      .dash-table td {
+        padding: 7px 8px;
+        text-align: right;
+        border: 1px solid var(--border);
+        white-space: nowrap;
+      }
+
+      .dash-table th:first-child,
+      .dash-table td:first-child {
+        text-align: left;
+        font-weight: 700;
+        position: sticky;
+        left: 0;
+        background: inherit;
+        z-index: 1;
+      }
+
+      .dash-table thead th {
+        background: var(--background);
+        font-weight: 700;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      .dash-table .section-header td {
+        background: var(--section-bg);
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: 13px;
+        text-align: center;
+        padding: 6px 8px;
+      }
+
+      .dash-table .row-evadere { background: var(--evadere-bg); }
+      .dash-table .row-produrre { background: var(--produrre-bg); }
+      .dash-table .row-prodotti { background: var(--prodotti-bg); }
+
+      .dash-table .row-total td { font-weight: 700; }
+
+      .dash-table .col-scad {
+        color: var(--primary-dark);
+        font-weight: 700;
+      }
+
+      .kpi-page {
+        width: 100%;
+      }
+
+      .kpi-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        height: calc(100vh - 170px);
+      }
+
+      .kpi-card {
+        flex: 1;
+        padding: 10px;
+        margin-bottom: 0;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .kpi-chart {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border: none;
+        border-radius: 10px;
+        background: var(--surface);
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          max-width: 960px;
+          padding: 20px;
+        }
+
+        .header {
+          padding: 14px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="header">
+        <h1><strong>Berloni</strong> Bagno</h1>
+        <span class="app-name"><strong>Produzione Interni</strong><br>Cassetto</span>
+      </header>
+      <div class="container">
+
+        <!-- ═══════ Navigazione principale ═══════ -->
+        <div class="main-nav" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+          <button id="navProduzione" class="nav-btn active" onclick="switchPage('produzione')">Macrobolla</button>
+          <button id="navOperatori" class="nav-btn" onclick="switchPage('operatori')">Operatori</button>
+          <button id="navDashboard" class="nav-btn" onclick="switchPage('dashboard')">Carico</button>
+          <button id="navKpi" class="nav-btn" onclick="switchPage('kpi')">Indicatori</button>
+        </div>
+
+        <!-- ═══════ PAGINA PRODUZIONE ═══════ -->
+        <div id="pageProduzione">
+          <div class="title">Registra il completamento della macrobolla</div>
+
+          <div class="card">
+            <label for="macrobolla">Macrobolla</label>
+            <input
+              id="macrobolla"
+              type="text"
+              inputmode="numeric"
+              placeholder="Digita il codice macrobolla"
+              autocomplete="off"
+              autofocus
+            />
+
+            <button class="btn btn-primary" onclick="cerca()">Cerca</button>
+
+            <div id="tipologiaScelta" class="hidden" style="margin-top:12px;">
+              <label>Seleziona tipologia</label>
+              <div id="tipologiaRadios" class="radio-group"></div>
+            </div>
+
+            <div id="searchMsg" class="msg"></div>
+          </div>
+
+          <div id="elencoAperteCard" class="card">
+            <div class="elenco-header">Macrobolle aperte per scadenza</div>
+            <div id="elencoAperteLoading" class="msg show info" style="margin-top:0;">Caricamento...</div>
+            <div id="elencoAperte"></div>
+          </div>
+
+          <div id="dettagliCard" class="card hidden">
+
+            <div>
+              <label for="quantita">Quantità da dichiarare</label>
+              <input
+                id="quantita"
+                type="number"
+                inputmode="numeric"
+                min="1"
+                step="1"
+                placeholder="Inserisci quantità"
+              />
+            </div>
+
+            <button class="btn btn-primary" onclick="conferma()">Conferma produzione</button>
+
+            <div id="updateMsg" class="msg"></div>
+
+            <div class="info-grid" style="margin-top:12px;">
+              <div class="info-item residuo-box">
+                <div class="info-label">Quantità residua da produrre</div>
+                <div id="residuo" class="info-value"></div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-label">Stabilimento</div>
+                <div id="stabilimento" class="info-value"></div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-label">Data di consegna</div>
+                <div id="dataConsegna" class="info-value"></div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-label">Tipologia</div>
+                <div id="tipologia" class="info-value"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════ PAGINA OPERATORI ═══════ -->
+        <div id="pageOperatori" class="hidden">
+          <div class="title">Registra operatori</div>
+
+          <div class="card">
+            <label for="dataOperatori">Data</label>
+            <input
+              id="dataOperatori"
+              type="date"
+              style="min-height:48px;"
+            />
+
+            <label style="margin-top:12px;">Numero operatori</label>
+            <div class="radio-group" id="numOperatoriGroup">
+              <label onclick="selezionaOperatori(1)"><input type="radio" name="numOp" value="1"> 1</label>
+              <label onclick="selezionaOperatori(2)"><input type="radio" name="numOp" value="2" checked> 2</label>
+              <label onclick="selezionaOperatori(3)"><input type="radio" name="numOp" value="3"> 3</label>
+              <label onclick="selezionaOperatori(4)"><input type="radio" name="numOp" value="4"> 4</label>
+            </div>
+
+            <label for="oreLavorate" style="margin-top:12px;">Ore totali lavorate</label>
+            <input
+              id="oreLavorate"
+              type="number"
+              inputmode="decimal"
+              min="0"
+              step="0.5"
+              placeholder="Ore totali di tutti gli operatori"
+            />
+
+            <button class="btn btn-primary" onclick="confermaOperatori()">Conferma</button>
+
+            <div id="operatoriMsg" class="msg"></div>
+          </div>
+        </div>
+
+        <!-- ═══════ PAGINA DASHBOARD ═══════ -->
+        <div id="pageDashboard" class="hidden">
+          <div class="title">Carico di produzione</div>
+          <div id="subtitle" class="subtitle"></div>
+
+          <div class="dash-tabs">
+            <button id="tabPlant" class="dash-tab active" onclick="setDashTab('plant')">Per stabilimento</button>
+            <button id="tabMachine" class="dash-tab" onclick="setDashTab('machine')">Per macchina</button>
+          </div>
+
+          <div id="dashLoadingMsg" class="msg show info">Caricamento dashboard...</div>
+
+          <div id="plantView"></div>
+          <div id="machineView" class="hidden"></div>
+        </div>
+
+        <!-- ═══════ PAGINA KPI ═══════ -->
+        <div id="pageKpi" class="hidden kpi-page">
+          <div class="title">Indicatori di produzione</div>
+
+          <div class="kpi-stack">
+            <div class="card kpi-card">
+              <img id="kpiChart1" src="" class="kpi-chart" alt="Grafico KPI 1">
+            </div>
+
+            <div class="card kpi-card">
+              <img id="kpiChart2" src="" class="kpi-chart" alt="Grafico KPI 2">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      /* ═══════════════════════════════
+         CONFIGURAZIONE API
+         Incolla qui l'URL /exec della Web App Apps Script.
+      ═══════════════════════════════ */
+      const API_URL = 'INCOLLA_QUI_URL_WEB_APP';
+
+      // Chiamata generica all'API REST. Invia { action, ...params } come JSON.
+      // Usa Content-Type text/plain per evitare il preflight CORS verso Apps Script.
+      async function apiCall(action, params) {
+        const body = Object.assign({ action: action }, params || {});
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(body)
+        });
+        if (!res.ok) {
+          throw new Error('Errore di rete (' + res.status + ')');
+        }
+        const data = await res.json();
+        if (data && data.error) {
+          throw new Error(data.error);
+        }
+        return data;
+      }
+
+      /* ═══════════════════════════════
+         NAVIGAZIONE PRINCIPALE
+      ═══════════════════════════════ */
+      let currentPage = 'produzione';
+      var kpiChartUrl1 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-AmypHZQhK2Gs4FGfzW_u2QIVGf2p7N5CNCstplkjzTuhz1URf5OPWG-ko5HwYWOqC5suOERWmF7j/pubchart?oid=328575574&format=image';
+      var kpiChartUrl2 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-AmypHZQhK2Gs4FGfzW_u2QIVGf2p7N5CNCstplkjzTuhz1URf5OPWG-ko5HwYWOqC5suOERWmF7j/pubchart?oid=1277235979&format=image';
+
+      function switchPage(page) {
+        currentPage = page;
+
+        document.getElementById('pageProduzione').classList.toggle('hidden', page !== 'produzione');
+        document.getElementById('pageOperatori').classList.toggle('hidden', page !== 'operatori');
+        document.getElementById('pageDashboard').classList.toggle('hidden', page !== 'dashboard');
+        document.getElementById('pageKpi').classList.toggle('hidden', page !== 'kpi');
+
+        document.getElementById('navProduzione').classList.toggle('active', page === 'produzione');
+        document.getElementById('navOperatori').classList.toggle('active', page === 'operatori');
+        document.getElementById('navDashboard').classList.toggle('active', page === 'dashboard');
+        document.getElementById('navKpi').classList.toggle('active', page === 'kpi');
+
+        if (page === 'operatori') {
+          var dataInput = document.getElementById('dataOperatori');
+          if (!dataInput.value) {
+            dataInput.value = new Date().toISOString().split('T')[0];
+            selezionaOperatori(2);
+          }
+        }
+
+        if (page === 'dashboard') {
+          caricaDashboard();
+        }
+
+        if (page === 'kpi') {
+          document.getElementById('kpiChart1').src = kpiChartUrl1;
+          document.getElementById('kpiChart2').src = kpiChartUrl2;
+        }
+      }
+
+      /* ═══════════════════════════════
+         PRODUZIONE
+      ═══════════════════════════════ */
+      let recordCorrente = null;
+      let recordsDisponibili = [];
+
+      function mostraMessaggio(id, testo, tipo) {
+        const el = document.getElementById(id);
+        el.textContent = testo;
+        el.className = 'msg show ' + tipo;
+      }
+
+      function nascondiMessaggio(id) {
+        const el = document.getElementById(id);
+        el.textContent = '';
+        el.className = 'msg';
+      }
+
+      function selezionaRecord(index) {
+        recordCorrente = recordsDisponibili[index];
+
+        document.querySelectorAll('#tipologiaRadios label').forEach(function(lbl, i) {
+          lbl.classList.toggle('selected', i === index);
+        });
+
+        document.getElementById('residuo').textContent = recordCorrente.residuo;
+        document.getElementById('quantita').value = recordCorrente.residuo;
+        document.getElementById('quantita').max = recordCorrente.residuo;
+        document.getElementById('quantita').disabled = false;
+
+        document.getElementById('stabilimento').textContent = recordCorrente.stabilimento;
+        document.getElementById('dataConsegna').textContent = recordCorrente.dataConsegna;
+        document.getElementById('tipologia').textContent = recordCorrente.tipologia;
+
+        document.getElementById('dettagliCard').classList.remove('hidden');
+
+        setTimeout(function() {
+          document.getElementById('quantita').focus();
+        }, 100);
+      }
+
+      function cerca() {
+        const macrobolla = document.getElementById('macrobolla').value.trim();
+        const dettagliCard = document.getElementById('dettagliCard');
+        const tipologiaScelta = document.getElementById('tipologiaScelta');
+
+        nascondiMessaggio('searchMsg');
+        nascondiMessaggio('updateMsg');
+        dettagliCard.classList.add('hidden');
+        tipologiaScelta.classList.add('hidden');
+        document.getElementById('elencoAperteCard').classList.add('hidden');
+        recordCorrente = null;
+        recordsDisponibili = [];
+
+        if (!macrobolla) {
+          mostraMessaggio('searchMsg', 'Inserisci una macrobolla.', 'error');
+          return;
+        }
+
+        mostraMessaggio('searchMsg', 'Ricerca in corso...', 'info');
+
+        apiCall('cercaMacrobolla', { macrobolla: macrobolla })
+          .then(function(res) {
+            if (!res.ok) {
+              mostraMessaggio('searchMsg', res.messaggio, 'error');
+              return;
+            }
+
+            recordsDisponibili = res.records;
+
+            if (recordsDisponibili.length === 1) {
+              mostraMessaggio('searchMsg', 'Macrobolla trovata.', 'success');
+              selezionaRecord(0);
+
+            } else {
+              var html = '';
+              recordsDisponibili.forEach(function(rec, i) {
+                html += '<label onclick="selezionaRecord(' + i + ')">' +
+                  '<input type="radio" name="tipologiaChoice" value="' + i + '"' +
+                  (i === 0 ? ' checked' : '') + '> ' +
+                  rec.tipologia +
+                  '</label>';
+              });
+              document.getElementById('tipologiaRadios').innerHTML = html;
+              tipologiaScelta.classList.remove('hidden');
+
+              mostraMessaggio('searchMsg', 'Macrobolla trovata con più tipologie. Seleziona quale registrare.', 'success');
+              selezionaRecord(0);
+            }
+          })
+          .catch(function(err) {
+            mostraMessaggio('searchMsg', 'Errore: ' + err.message, 'error');
+          });
+      }
+
+      function conferma() {
+        if (!recordCorrente) {
+          mostraMessaggio('updateMsg', 'Nessun record selezionato.', 'error');
+          return;
+        }
+
+        const quantita = Number(document.getElementById('quantita').value);
+        const residuo = Number(recordCorrente.residuo);
+
+        if (!quantita || quantita <= 0) {
+          mostraMessaggio('updateMsg', 'Inserisci una quantità valida.', 'error');
+          return;
+        }
+
+        if (quantita > residuo) {
+          mostraMessaggio('updateMsg', 'La quantità non può superare il residuo.', 'error');
+          return;
+        }
+
+        mostraMessaggio('updateMsg', 'Registrazione in corso...', 'info');
+
+        apiCall('aggiornaProduzione', {
+            macrobolla: recordCorrente.macrobolla,
+            tipologia: recordCorrente.tipologia,
+            quantita: quantita
+          })
+          .then(function(res) {
+            mostraMessaggio(
+              'updateMsg',
+              res.messaggio + ' Quantità: ' + res.quantitaRegistrata + '.',
+              'success'
+            );
+            // Dopo la conferma, torna alla schermata iniziale (come "nuova ricerca")
+            setTimeout(function() {
+              nuovaRicerca();
+            }, 1500);
+          })
+          .catch(function(err) {
+            mostraMessaggio('updateMsg', 'Errore: ' + err.message, 'error');
+          });
+      }
+
+      function nuovaRicerca() {
+        recordCorrente = null;
+        recordsDisponibili = [];
+        document.getElementById('macrobolla').value = '';
+        document.getElementById('quantita').value = '';
+        document.getElementById('quantita').disabled = false;
+        document.getElementById('dettagliCard').classList.add('hidden');
+        document.getElementById('tipologiaScelta').classList.add('hidden');
+        nascondiMessaggio('searchMsg');
+        nascondiMessaggio('updateMsg');
+        caricaElencoAperte();
+        document.getElementById('macrobolla').focus();
+      }
+
+      document.getElementById('macrobolla').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          cerca();
+        }
+      });
+
+      document.getElementById('quantita').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          conferma();
+        }
+      });
+
+      /* ═══════════════════════════════
+         OPERATORI
+      ═══════════════════════════════ */
+
+      var numOperatoriSelezionato = 2;
+
+      function selezionaOperatori(n) {
+        numOperatoriSelezionato = n;
+        document.querySelectorAll('#numOperatoriGroup label').forEach(function(lbl) {
+          var radio = lbl.querySelector('input');
+          lbl.classList.toggle('selected', Number(radio.value) === n);
+        });
+      }
+
+      function confermaOperatori() {
+        var data = document.getElementById('dataOperatori').value;
+        var ore = Number(document.getElementById('oreLavorate').value);
+
+        if (!data) {
+          mostraMessaggio('operatoriMsg', 'Seleziona una data.', 'error');
+          return;
+        }
+
+        if (!ore || ore <= 0) {
+          mostraMessaggio('operatoriMsg', 'Inserisci un numero di ore valido.', 'error');
+          return;
+        }
+
+        mostraMessaggio('operatoriMsg', 'Registrazione in corso...', 'info');
+
+        apiCall('dichiaraOperatori', {
+            data: data,
+            numOperatori: numOperatoriSelezionato,
+            oreLavorate: ore
+          })
+          .then(function(res) {
+            mostraMessaggio('operatoriMsg', res.messaggio, 'success');
+          })
+          .catch(function(err) {
+            mostraMessaggio('operatoriMsg', 'Errore: ' + err.message, 'error');
+          });
+      }
+
+      /* ═══════════════════════════════
+         ELENCO MACROBOLLE APERTE
+      ═══════════════════════════════ */
+
+      function scegliDaElenco(codice) {
+        document.getElementById('macrobolla').value = codice;
+        cerca();
+      }
+
+      function renderElencoAperte(lista) {
+        var card = document.getElementById('elencoAperteCard');
+        var container = document.getElementById('elencoAperte');
+        document.getElementById('elencoAperteLoading').style.display = 'none';
+
+        if (!lista || lista.length === 0) {
+          container.innerHTML = '<div style="font-size:13px; color:var(--text-secondary); padding:8px 0;">Nessuna macrobolla aperta.</div>';
+          card.classList.remove('hidden');
+          return;
+        }
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        var html = '<table class="elenco-table"><thead><tr>' +
+          '<th>Macrob.</th><th>Cons.</th><th>Stab.</th><th>Tipo</th><th>Res.</th>' +
+          '</tr></thead><tbody>';
+
+        lista.forEach(function(item) {
+          var scaduta = item.dataConsegnaRaw < today.getTime() ? ' class="scaduta"' : '';
+          html += '<tr onclick="scegliDaElenco(\'' + item.macrobolla + '\')"' + scaduta + '>' +
+            '<td>' + item.macrobolla + '</td>' +
+            '<td>' + item.dataConsegna + '</td>' +
+            '<td>' + item.stabilimento + '</td>' +
+            '<td>' + item.tipologia + '</td>' +
+            '<td>' + item.residuo + '</td>' +
+            '</tr>';
+        });
+
+        html += '</tbody></table>';
+        container.innerHTML = html;
+        card.classList.remove('hidden');
+      }
+
+      function caricaElencoAperte() {
+        var card = document.getElementById('elencoAperteCard');
+        var loadEl = document.getElementById('elencoAperteLoading');
+        card.classList.remove('hidden');
+        loadEl.style.display = 'block';
+        loadEl.textContent = 'Caricamento...';
+        loadEl.className = 'msg show info';
+        loadEl.style.marginTop = '0';
+        document.getElementById('elencoAperte').innerHTML = '';
+
+        apiCall('getMacrobolleAperte')
+          .then(renderElencoAperte)
+          .catch(function(err) {
+            loadEl.textContent = 'Errore caricamento elenco.';
+            loadEl.className = 'msg show error';
+            loadEl.style.marginTop = '0';
+          });
+      }
+
+      caricaElencoAperte();
+
+      /* ═══════════════════════════════
+         DASHBOARD
+      ═══════════════════════════════ */
+      let activeDashTab = 'plant';
+
+      function sortEntries(obj) {
+        return Object.entries(obj).sort(function(a, b) {
+          return a[0].localeCompare(b[0], 'it');
+        });
+      }
+
+      function calcTotals(groups, columns) {
+        var tot = { daEvadere: {}, daProdurre: {}, prodotti: {} };
+        columns.forEach(function(col) {
+          tot.daEvadere[col] = 0;
+          tot.daProdurre[col] = 0;
+          tot.prodotti[col] = 0;
+        });
+        Object.values(groups).forEach(function(g) {
+          columns.forEach(function(col) {
+            tot.daEvadere[col] += Number(g.daEvadere[col] || 0);
+            tot.daProdurre[col] += Number(g.daProdurre[col] || 0);
+            tot.prodotti[col] += Number(g.prodotti[col] || 0);
+          });
+        });
+        return tot;
+      }
+
+      function renderDataRow(name, bucketMap, columns, rowClass) {
+        var cells = '<td>' + name + '</td>';
+        columns.forEach(function(col) {
+          var val = Number(bucketMap[col] || 0);
+          var display = val === 0 ? '-' : val;
+          var cls = (col === 'Scad' && val > 0) ? ' class="col-scad"' : '';
+          cells += '<td' + cls + '>' + display + '</td>';
+        });
+        return '<tr class="' + rowClass + '">' + cells + '</tr>';
+      }
+
+      function renderGroups(containerId, groups, columns) {
+        var container = document.getElementById(containerId);
+        var items = sortEntries(groups);
+        var numCols = columns.length + 1;
+
+        if (!items.length) {
+          container.innerHTML = '<div class="card">Nessun dato disponibile.</div>';
+          return;
+        }
+
+        var totals = calcTotals(groups, columns);
+
+        var headerCells = '<th></th>';
+        columns.forEach(function(col) {
+          var label = col === 'Scad' ? 'Scaduti' : col;
+          headerCells += '<th>' + label + '</th>';
+        });
+
+        var html = '<div class="dash-table-wrap"><table class="dash-table">';
+        html += '<thead><tr>' + headerCells + '</tr></thead><tbody>';
+
+        html += '<tr class="section-header"><td colspan="' + numCols + '">Cassetti da Ev.</td></tr>';
+        items.forEach(function(entry) {
+          html += renderDataRow(entry[0], entry[1].daEvadere, columns, 'row-evadere');
+        });
+        html += renderDataRow('TOTALE', totals.daEvadere, columns, 'row-evadere row-total');
+
+        html += '<tr class="section-header"><td colspan="' + numCols + '">Cassetti da Produrre</td></tr>';
+        items.forEach(function(entry) {
+          html += renderDataRow(entry[0], entry[1].daProdurre, columns, 'row-produrre');
+        });
+        html += renderDataRow('TOTALE', totals.daProdurre, columns, 'row-produrre row-total');
+
+        html += '<tr class="section-header"><td colspan="' + numCols + '">Cassetti Prodotti</td></tr>';
+        items.forEach(function(entry) {
+          html += renderDataRow(entry[0], entry[1].prodotti, columns, 'row-prodotti');
+        });
+        html += renderDataRow('TOTALE', totals.prodotti, columns, 'row-prodotti row-total');
+
+        html += '</tbody></table></div>';
+        container.innerHTML = html;
+      }
+
+      function setDashTab(tab) {
+        activeDashTab = tab;
+
+        document.getElementById('tabPlant').classList.toggle('active', tab === 'plant');
+        document.getElementById('tabMachine').classList.toggle('active', tab === 'machine');
+
+        document.getElementById('plantView').classList.toggle('hidden', tab !== 'plant');
+        document.getElementById('machineView').classList.toggle('hidden', tab !== 'machine');
+      }
+
+      function renderDashboard(data) {
+        document.getElementById('dashLoadingMsg').style.display = 'none';
+        document.getElementById('subtitle').textContent = 'Aggiornata il ' + data.generatedAt;
+
+        renderGroups('plantView', data.byPlant, data.columns);
+        renderGroups('machineView', data.byMachine, data.columns);
+      }
+
+      function caricaDashboard() {
+        var loadEl = document.getElementById('dashLoadingMsg');
+        loadEl.style.display = 'block';
+        loadEl.textContent = 'Caricamento dashboard...';
+        loadEl.className = 'msg show info';
+        document.getElementById('subtitle').textContent = 'Caricamento dati...';
+
+        apiCall('getDashboardData')
+          .then(renderDashboard)
+          .catch(function(err) {
+            var loadEl = document.getElementById('dashLoadingMsg');
+            loadEl.textContent = 'Errore: ' + err.message;
+            loadEl.className = 'msg show error';
+          });
+      }
+
+      /* ═══════════════════════════════
+         SERVICE WORKER / PWA
+      ═══════════════════════════════ */
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').catch(function() {});
+        });
+      }
+    </script>
+  </body>
+</html>

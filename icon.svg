@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Produzione Interni Cassetto">
+  <rect width="512" height="512" rx="96" fill="#E79E2F"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="120" y="120" width="272" height="272" rx="24"/>
+    <line x1="120" y1="208" x2="392" y2="208"/>
+    <line x1="120" y1="296" x2="392" y2="296"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="256" cy="164" r="14"/>
+    <circle cx="256" cy="252" r="14"/>
+    <circle cx="256" cy="340" r="14"/>
+  </g>
+</svg>
