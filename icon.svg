@@ -1,13 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Produzione Interni Cassetto">
-  <rect width="512" height="512" rx="96" fill="#E79E2F"/>
-  <g fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="120" y="120" width="272" height="272" rx="24"/>
-    <line x1="120" y1="208" x2="392" y2="208"/>
-    <line x1="120" y1="296" x2="392" y2="296"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Sfondo con angoli stile iOS -->
+  <rect width="512" height="512" rx="115" fill="#E79E2F"/>
+
+  <!-- Scia: 3 livelli di opacità decrescente (0.40 → 0.24 → 0.14) dietro l'elemento principale -->
+  <g fill="white" opacity="0.40">
+    <rect x="136" y="116" width="260" height="80" rx="14"/>
+    <rect x="136" y="220" width="260" height="80" rx="14"/>
+    <rect x="136" y="324" width="260" height="80" rx="14"/>
   </g>
-  <g fill="#FFFFFF">
-    <circle cx="256" cy="164" r="14"/>
-    <circle cx="256" cy="252" r="14"/>
-    <circle cx="256" cy="340" r="14"/>
+  <g fill="white" opacity="0.24">
+    <rect x="146" y="124" width="260" height="80" rx="14"/>
+    <rect x="146" y="228" width="260" height="80" rx="14"/>
+    <rect x="146" y="332" width="260" height="80" rx="14"/>
+  </g>
+  <g fill="white" opacity="0.14">
+    <rect x="156" y="132" width="260" height="80" rx="14"/>
+    <rect x="156" y="236" width="260" height="80" rx="14"/>
+    <rect x="156" y="340" width="260" height="80" rx="14"/>
+  </g>
+
+  <!-- Elemento principale: 3 frontali cassetto centrati -->
+  <g fill="white">
+    <rect x="126" y="108" width="260" height="80" rx="14"/>
+    <rect x="126" y="212" width="260" height="80" rx="14"/>
+    <rect x="126" y="316" width="260" height="80" rx="14"/>
+    <!-- Maniglie posizionate nell'area arancione dei gap tra i cassetti -->
+    <rect x="219" y="193" width="74" height="14" rx="7"/>
+    <rect x="219" y="297" width="74" height="14" rx="7"/>
   </g>
 </svg>
