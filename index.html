@@ -66,44 +66,43 @@
         background: var(--background);
       }
 
-      .header {
-        width: 100%;
+      .app-header {
         background: var(--surface);
-        border-bottom: 1px solid var(--border);
+        color: var(--text-primary);
         padding: 14px 16px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        font-family: 'Nunito', Arial, sans-serif;
       }
 
-      .header h1 {
+      @media (min-width: 480px) {
+        .app-header { padding: 14px 20px; }
+      }
+
+      .app-header h1 {
         margin: 0;
         font-size: 26px;
-        font-weight: 400;
-        line-height: 1.1;
-        color: var(--text-primary);
-        white-space: nowrap;
+        font-weight: 400;  /* Arial, ereditato dal body */
       }
 
-      .header h1 strong {
+      .app-header h1 strong {
         font-weight: 800;
       }
 
-      .app-name {
+      .app-header .app-name {
         font-family: 'Nunito', Arial, sans-serif;
         font-size: 13px;
         font-weight: 400;
-        line-height: 1.25;
         color: var(--text-secondary);
+        line-height: 1.2;
         text-align: right;
       }
 
-      .app-name strong {
+      .app-header .app-name strong {
         font-weight: 800;
       }
 
@@ -501,19 +500,15 @@
           max-width: 960px;
           padding: 20px;
         }
-
-        .header {
-          padding: 14px 20px;
-        }
       }
     </style>
   </head>
   <body>
     <div class="app-shell">
-      <header class="header">
+      <div class="app-header">
         <h1><strong>Berloni</strong> Bagno</h1>
         <span class="app-name"><strong>Produzione Interni</strong><br>Cassetto</span>
-      </header>
+      </div>
       <div class="container">
 
         <!-- ═══════ Navigazione principale ═══════ -->
