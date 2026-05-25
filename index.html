@@ -150,13 +150,22 @@
         transform: translateY(1px);
       }
 
-      .title {
+      .page-title {
         font-size: 24px;
         line-height: 1.2;
         font-weight: 700;
-        color: var(--text-primary);
-        margin: 4px 0 16px;
         letter-spacing: -0.01em;
+        color: var(--text-primary);
+        margin: 4px 0 20px;
+      }
+
+      .card-title {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-secondary);
+        margin-bottom: 10px;
       }
 
       .card {
@@ -521,7 +530,7 @@
 
         <!-- ═══════ PAGINA PRODUZIONE ═══════ -->
         <div id="pageProduzione">
-          <div class="title">Registra il completamento della macrobolla</div>
+          <div class="page-title">Registra il completamento della macrobolla</div>
 
           <div class="card">
             <label for="macrobolla">Macrobolla</label>
@@ -595,7 +604,7 @@
 
         <!-- ═══════ PAGINA OPERATORI ═══════ -->
         <div id="pageOperatori" class="hidden">
-          <div class="title">Registra operatori</div>
+          <div class="page-title">Registra operatori</div>
 
           <div class="card">
             <label for="dataOperatori">Data</label>
@@ -631,7 +640,7 @@
 
         <!-- ═══════ PAGINA DASHBOARD ═══════ -->
         <div id="pageDashboard" class="hidden">
-          <div class="title">Carico di produzione</div>
+          <div class="page-title">Carico di produzione</div>
           <div id="subtitle" class="subtitle"></div>
 
           <div class="dash-tabs">
@@ -647,7 +656,7 @@
 
         <!-- ═══════ PAGINA KPI ═══════ -->
         <div id="pageKpi" class="hidden kpi-page">
-          <div class="title">Indicatori di produzione</div>
+          <div class="page-title">Indicatori di produzione</div>
 
           <div class="kpi-stack">
             <div class="card kpi-card">
